@@ -2,24 +2,19 @@ import { FC } from 'react';
 import { Formik } from 'formik';
 import FieldWrapper from '../components/FieldWrapper';
 import { Card, VStack, StackSeparator, Button } from '@chakra-ui/react';
+import { initialFormValues } from '../constants/constants';
+import { validationSchema } from '../utils/yupValidation';
 
 const FormPage: FC = () => {
     return (
         <Card.Root width="320px">
             <Card.Body gap="2">
                 <Formik
-                    initialValues={{
-                        name: '',
-                        address: '',
-                        floor: 0,
-                        totalFloors: 0,
-                        square: 0,
-                        livingSquare: 0,
-                        kitchenSquare: 0,
-                    }}
+                    initialValues={initialFormValues}
                     onSubmit={(values) => {
                         console.log('Form submitted!', values);
                     }}
+                    validationSchema={validationSchema}
                 >
                     {(props) => (
                         <form onSubmit={props.handleSubmit} className="form">
